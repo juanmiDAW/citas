@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('agendas', function (Blueprint $table) {
             $table->id();
+            $table->timestamp('disponibilidad');
+            $table->foreignId('especialista_id')->constrained();
             $table->timestamps();
         });
     }
