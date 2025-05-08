@@ -9,4 +9,10 @@ class Paciente extends Model
 {
     /** @use HasFactory<\Database\Factories\PacienteFactory> */
     use HasFactory;
+
+    protected $fillable = ['nombre', 'reserva_id'];
+
+    public function reserva(){
+        return $this->hasMany(Reserva::class);
+    }
 }

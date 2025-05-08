@@ -9,4 +9,14 @@ class Agenda extends Model
 {
     /** @use HasFactory<\Database\Factories\AgendaFactory> */
     use HasFactory;
+
+    protected $fillable = ['disponibilidad', 'especialista_id'];
+
+    public function especialista(){
+        return $this->belongsTo(Especialista::class);
+    }
+
+    public function reserva(){
+        return $this->hasMany(Reserva::class);
+    }
 }

@@ -9,4 +9,14 @@ class Especialidad extends Model
 {
     /** @use HasFactory<\Database\Factories\EspecialidadFactory> */
     use HasFactory;
+
+    protected $table = 'especialidades';
+
+    protected $fillable = ['especialidad'];
+
+    public function companias(){
+        return $this->belongsToMany(Compania::class, 'compania_especialidad');
+    }
+
+
 }

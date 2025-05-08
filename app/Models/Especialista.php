@@ -9,4 +9,14 @@ class Especialista extends Model
 {
     /** @use HasFactory<\Database\Factories\EspecialistaFactory> */
     use HasFactory;
+
+    protected $fillable = ['nombre', 'especialidad_id'];
+
+    public function especialidad(){
+        return $this->belongsTo(Especialidad::class);
+    }
+
+    public function agenda(){
+        return $this->hasOne(Agenda::class);
+    }
 }
