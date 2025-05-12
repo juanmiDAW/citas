@@ -14,6 +14,6 @@ class Compania extends Model
     protected $fillable = ['denominacion'];
 
     public function especialidades(){
-        return $this->belongsToMany(Especialidad::class, 'compania_especialidad');
+        return $this->belongsToMany(Especialidad::class, 'compania_especialidad', 'compania_id', 'especialidad_id');
     }
 }

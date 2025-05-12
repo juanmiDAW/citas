@@ -18,5 +18,9 @@ class Especialidad extends Model
         return $this->belongsToMany(Compania::class, 'compania_especialidad');
     }
 
+    public function especialistas(){
+        return $this->hasMany(Especialista::class);
+    }
+
 
 }
