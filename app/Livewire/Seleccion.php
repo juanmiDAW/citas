@@ -15,6 +15,7 @@ class Seleccion extends Component
     public $especialidades;
     public $especialidadesSeleccion;
     public $especialistas;
+    public $especialistaSeleccion;
     public $agenda;
     public $reservas;
     public $pacientes;
