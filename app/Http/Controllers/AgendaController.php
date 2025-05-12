@@ -6,6 +6,8 @@ use App\Http\Requests\StoreAgendaRequest;
 use App\Http\Requests\UpdateAgendaRequest;
 use App\Models\Agenda;
 
+use function PHPUnit\Framework\returnSelf;
+
 class AgendaController extends Controller
 {
     /**
@@ -13,7 +15,7 @@ class AgendaController extends Controller
      */
     public function index()
     {
-        //
+        return view('agendas.index');
     }
 
     /**
