@@ -22,6 +22,14 @@ class AgendasEspecialistas extends Component
         $this->agenda = Agenda::where('especialista_id', $this->especialistasSeleccion)->get();
     }
 
+    public function bloquear($diaYHora){
+        $bloqueo = Agenda::create([
+            'disponibilidad' => $diaYHora,
+            'especialista_id' => $this->especialistasSeleccion,
+        ]);
+
+    }
+
     public function render()
     {
         return view('livewire.agendas-especialistas');
