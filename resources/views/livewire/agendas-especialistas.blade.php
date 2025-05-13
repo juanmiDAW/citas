@@ -30,12 +30,27 @@
                         @for ($j = 1; $j < 6; $j++)
                             @php
                                 $diaYHora = now()->startOfWeek()->addDays($j)->addHours($i, 0, 0);
+                                $bloqueada = \App\Models\Agenda::where('especialista_id', $especialistasSeleccion)
+                                    ->where('disponibilidad', $diaYHora)
+                                    ->first();
+
                             @endphp
-                            <td class="flex-column justify-center align-middle">
-                                <button wire:click="bloquear('{{$diaYHora}}')">Reservar</button>
-                            </td>
-                        @endfor
-                    </tr>
+
+                            @if ($bloqueada)
+                                <td>
+                                    <button
+                                        class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                                        wire:click="anular('{{ $bloqueada->id }}')">Anular</button>
+                                </td>
+                            @else
+                                <td>
+                                    <button
+                                        class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                                        wire:click="bloquear({{ $diaYHora }})">Reservar</button>
+                                </td>
+                            @endif
+                @endfor
+                </tr>
                 @endfor
             </tbody>
         </table>
