@@ -24,7 +24,7 @@ class AgendasEspecialistas extends Component
     }
 
     public function bloquear($diaYHora){
-        $bloqueo = Agenda::delete([
+        $bloqueo = Agenda::create([
             'disponibilidad' => $diaYHora,
             'especialista_id' => $this->especialistasSeleccion,
         ]);
