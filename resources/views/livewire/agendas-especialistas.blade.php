@@ -34,6 +34,8 @@
                                     ->where('disponibilidad', $diaYHora)
                                     ->first();
 
+                                $reservada = \App\Models\Reserva::where('reserva', $diaYHora)->first();
+
                             @endphp
 
                             @if ($bloqueada)
@@ -42,12 +44,12 @@
                                         class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
                                         wire:click="anular('{{ $bloqueada->id }}')">Anular</button>
                                 </td>
-                            @elseif($bloqueada)
-                            <td>
+                            @elseif($reservada)
+                                <td>
 
-                                <button
-                                class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Reservada</button>
-                            </td>
+                                    <button
+                                        class="text-white bg-gray-700 hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">Reservada</button>
+                                </td>
                             @else
                                 <td>
                                     <button
