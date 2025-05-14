@@ -61,7 +61,9 @@
                                         $bloqueada = \App\Models\Agenda::where(
                                             'especialista_id',
                                             $especialistaSeleccion,
-                                        )->where('disponibilidad', $diaYHora)->first();
+                                        )
+                                            ->where('disponibilidad', $diaYHora)
+                                            ->first();
 
                                         $paciente = \App\Models\Paciente::where(
                                             'nombre',
@@ -71,9 +73,15 @@
                                         $reservada = \App\Models\Reserva::with('paciente')
                                             ->where('reserva', $diaYHora)
                                             ->first();
+                                        // dd($bloqueada);
                                     @endphp
-
-                                    @if ($reservada === null)
+                                    
+                                    @if ($bloqueada)
+                                        <td>
+                                            <button
+                                                class="text-white bg-gray-700 hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">Reservada</button>
+                                        </td>
+                                    @elseif ($reservada === null)
                                         <td>
                                             <button
                                                 class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
@@ -85,7 +93,7 @@
                                                 class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
                                                 wire:click="anular('{{ $reservada->id }}')">Anular</button>
                                         </td>
-                                    @elseif($reservada->paciente->nombre !== $paciente->nombre || $bloqueada)
+                                    @elseif (($reservada?->paciente->nombre ?? true) !== $paciente->nombre)
                                         <td>
                                             <button
                                                 class="text-white bg-gray-700 hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">Reservada</button>
