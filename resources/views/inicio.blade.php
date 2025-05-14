@@ -9,6 +9,7 @@
     @livewireStyles
     <!-- Styles -->
 </head>
+<x-app-layout>
 
 <body class="antialiased font-sans">
     @livewire('seleccion')
@@ -16,3 +17,5 @@
 </body>
 
 </html>
+</x-app-layout>
+

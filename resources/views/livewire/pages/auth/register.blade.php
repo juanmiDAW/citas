@@ -29,6 +29,10 @@ new #[Layout('layouts.guest')] class extends Component
         $validated['password'] = Hash::make($validated['password']);
 
         event(new Registered($user = User::create($validated)));
+        
+        \App\Models\Paciente::create([
+            'nombre' => $this->name,
+    ]);
 
         Auth::login($user);
 

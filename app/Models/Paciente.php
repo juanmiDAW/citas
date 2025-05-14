@@ -12,7 +12,7 @@ class Paciente extends Model
 
     protected $fillable = ['nombre', 'reserva_id'];
 
-    public function reserva(){
+    public function reservas(){
         return $this->hasMany(Reserva::class);
     }
 }
