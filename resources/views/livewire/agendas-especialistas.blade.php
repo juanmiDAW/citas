@@ -2,7 +2,6 @@
     <h2>Agendas</h2>
     <div>
         <select name="" id="" wire:model.live="especialistasSeleccion">
-            <option value="">Elige un especialista</option>
             @foreach ($especialistas as $especialista)
                 <option value="{{ $especialista->id }}">{{ $especialista->nombre }}</option>
             @endforeach
