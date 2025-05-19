@@ -54,13 +54,11 @@
                                 @for ($j = 1; $j < 6; $j++)
                                     @php
                                         $diaYHora = now()->startOfWeek()->addDays($j)->addHours($i, 0, 0);
-
-                                        $bloqueada = \App\Models\Agenda::where(
-                                            'especialista_id',
-                                            $especialistaSeleccion,
-                                        )
-                                            ->where('disponibilidad', $diaYHora)
-                                            ->first();
+                                        $principioSemana = now()->startOfWeek();
+                                        $finalSemana = now()->endOfWeek();
+                                        $reservada = \App\Models\Agenda::whereBetween('disponibilidad',[$principioSemana, $finalSemana])
+                                            ->where('especialista_id', $especialistaSeleccion)
+                                            ->get();
 
                                         $paciente = \App\Models\Paciente::where(
                                             'nombre',
@@ -72,7 +70,7 @@
                                             ->first();
                                         // dd($bloqueada);
                                     @endphp
-                                    
+
                                     @if ($bloqueada)
                                         <td>
                                             <button
