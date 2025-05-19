@@ -28,7 +28,7 @@ class Seleccion extends Component
     }
 
     public function updatedCompaniasSeleccion(){
-        $this->especialidades = Compania::with('especialidades')->find($this->companiasSeleccion)->especialidades;
+        $this->especialidades = Compania::find($this->companiasSeleccion)->especialidades;
     }
 
     public function updatedEspecialidadesSeleccion(){
@@ -47,7 +47,7 @@ class Seleccion extends Component
     public function anular($reservadaId){
         Reserva::where('id', $reservadaId)->delete();
     }
-    
+
     public function render()
     {
         return view('livewire.seleccion');
