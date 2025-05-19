@@ -10,7 +10,7 @@ class Reserva extends Model
     /** @use HasFactory<\Database\Factories\ReservaFactory> */
     use HasFactory;
 
-    protected $fillable = ['reserva', 'agenda_id', 'paciente_id'];
+    protected $fillable = ['agenda_id', 'paciente_id', 'especiaista_id'];
 
     public function agenda(){
         return $this->belongsTo(Agenda::class);
